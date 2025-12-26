@@ -184,7 +184,7 @@
   color: #b3b3b3;
 }
 
-@media (max-width: 770px) {
+@media (max-width: 768px) {
   .sidebar-logo, .playlist-section, .playlist-header{
     display: none;
   }
@@ -197,7 +197,7 @@
     #create-playlist{
       display: flex;
       flex-direction: column;
-      width: 150px;
+      width: 155px;
     }
   .sidebar{
     position: fixed;
@@ -224,8 +224,8 @@
   .nav-button{
     display: flex;
     flex-direction: column;
-    width: 150px;
-    font-size: 13px;
+    width: 155px;
+    font-size: 12px;
   }
   #show-create-playlist{
     display: none;

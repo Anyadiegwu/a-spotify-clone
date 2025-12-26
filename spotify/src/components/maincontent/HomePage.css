@@ -396,7 +396,7 @@
   }
   .artists-grid,
   .tracks-grid {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   }
   
   #quick-pick-image {
@@ -438,7 +438,11 @@
   }
   .artists-grid,
   .tracks-grid {
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px;
+  }
+  #tracks-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     gap: 16px;
   }
 }
@@ -461,12 +465,17 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
   }
+  #tracks-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
 
   .artist-card,
   .track-card {
     padding: 12px;
   }
 }
+
 .home-page {
   overflow-y: auto;
   scroll-behavior: smooth;

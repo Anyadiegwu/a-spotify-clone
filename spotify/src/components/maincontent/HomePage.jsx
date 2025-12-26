@@ -142,7 +142,8 @@ export default function HomePage() {
               Recently played
             </h2>
           </div>
-          <div className="tracks-grid">
+          <div className="tracks-grid" 
+          id='tracks-grid'>
             {recentlyPlayed.map((item, idx) => {
               const track = item.track;
               return (
@@ -186,7 +187,8 @@ export default function HomePage() {
               Your top tracks
             </h2>
           </div>
-          <div className="tracks-grid">
+          <div className="tracks-grid"
+          id='tracks-grid'>
             {topTracks.slice(8).map((track) => (
               <div 
                 key={track.id} 
