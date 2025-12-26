@@ -5,12 +5,10 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 
 export default [
-  // Ignore build output
   { ignores: ['dist/**', 'node_modules/**'] },
 
-  // ==================== REACT / FRONTEND FILES (src/, *.jsx) ====================
   {
-    files: ['**/*.{jsx,tsx}', 'src/**/*.js'], // Frontend React files first
+    files: ['**/*.{jsx,tsx}', 'src/**/*.js'], 
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
@@ -32,20 +30,20 @@ export default [
     },
   },
 
-  // ==================== NODE.JS / BACKEND FILES (index.js, server.js) ====================
+
   {
-    files: ['index.js', 'server.js', 'api.js'], // Your root index.js + common server names
+    files: ['index.js', 'server.js', 'api.js'], 
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
       globals: {
-        ...globals.node,  // ✅ process, Buffer, __dirname, module, etc.
+        ...globals.node, 
       },
     },
     rules: {
       ...js.configs.recommended.rules,
-      'no-console': 'off',           // ✅ Allow console.log()
-      'no-unused-vars': ['error', { argsIgnorePattern: '^_' }], // ✅ Ignore _error params
+      'no-console': 'off',          
+      'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     },
   },
 ];

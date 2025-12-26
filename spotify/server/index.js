@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 5000;
 const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
 const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
 const REDIRECT_URI = process.env.REDIRECT_URI || 'http://127.0.0.1:5000/auth/callback';
-const FRONTEND_URI = process.env.FRONTEND_URI || 'http://localhost:5173';
+const FRONTEND_URI = process.env.FRONTEND_URI || "https://a-spotify-clone.vercel.app/";
 
 let accessToken = '';
 let tokenExpiresAt = 0;
@@ -182,7 +182,6 @@ app.get('/api/playlists', async (req, res) => {
     const response = await axios.get('https://api.spotify.com/v1/me/playlists?limit=50', {
       headers: { Authorization: `Bearer ${access_token}` },
     });
-    // console.log('✅ Playlists fetched successfully');
     res.json(response.data.items);
   } catch (error) {
     console.error('Failed to fetch playlists:', error.response?.data);
@@ -206,11 +205,9 @@ app.get('/api/playlists/:playlistId/tracks', async (req, res) => {
     let response;
 
     if (playlistId === 'liked-songs') {
-      // Special handling for Liked Songs
       response = await axios.get('https://api.spotify.com/v1/me/tracks?limit=50', {
         headers: { Authorization: `Bearer ${access_token}` },
       });
-      // Transform to match normal playlist tracks format
       const transformed = {
         items: response.data.items.map(item => ({
           track: item.track,
@@ -223,7 +220,7 @@ app.get('/api/playlists/:playlistId/tracks', async (req, res) => {
       return res.json(transformed);
     }
 
-    // Normal playlist
+
     response = await axios.get(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
       headers: { Authorization: `Bearer ${access_token}` },
     });
@@ -316,7 +313,6 @@ app.put("/api/player/play", async (req, res) => {
   }
 
   try {
-    // console.log("Attempting to play track:", trackId); 
 
     const response = await axios.put(
       "https://api.spotify.com/v1/me/player/play",
@@ -330,8 +326,6 @@ app.put("/api/player/play", async (req, res) => {
         },
       }
     );
-
-    // console.log("Play successful:", response.status);
     res.sendStatus(204);
 
   } catch (err) {
@@ -1036,7 +1030,3 @@ app.get('/auth/logout', (req, res) => {
   res.redirect(FRONTEND_URI);
 });
 
-app.listen(PORT, () => {
-  // console.log(`Backend server running on http://127.0.0.1:${PORT}`);
-  console.log(`Login URL: http://127.0.0.1:${PORT}/auth/login`);
-});
