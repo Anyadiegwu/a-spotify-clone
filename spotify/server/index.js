@@ -43,8 +43,16 @@ async function getAccessToken() {
   }
 }
 
+// app.use(cors({
+//   origin: FRONTEND_URI,
+//   credentials: true,
+// }));
 app.use(cors({
-  origin: FRONTEND_URI,
+  origin: [
+    'http://localhost:5173', 
+    'https://your-app-name.vercel.app',  
+    process.env.FRONTEND_URI  
+  ].filter(Boolean),
   credentials: true,
 }));
 

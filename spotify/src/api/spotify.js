@@ -1,4 +1,7 @@
-const BACKEND_URL = 'http://127.0.0.1:5000';
+// const BACKEND_URL = 'http://127.0.0.1:5000';
+const BACKEND_URL = import.meta.env.PROD 
+  ? 'https://a-spotify-clone-w49o.vercel.app'  
+  : 'http://127.0.0.1:5000';
 
 function getAccessToken() {
   return localStorage.getItem('spotify_access_token');
