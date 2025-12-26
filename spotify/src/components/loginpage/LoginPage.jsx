@@ -5,7 +5,7 @@ import './LoginPage.css';
 export default function LoginPage() {
 
 const handleLogin = () => {
-    window.location.href = 'http://127.0.0.1:5000/auth/login';
+    window.location.href = 'https://a-spotify-clone.vercel.app/auth/login';
   };
   return (
     <div className="login-container">
