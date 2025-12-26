@@ -1,6 +1,6 @@
 // const BACKEND_URL = 'http://127.0.0.1:5000';
 const BACKEND_URL = import.meta.env.PROD 
-  ? 'https://a-spotify-clone-w49o.vercel.app'  
+  ? 'https://a-spotify-clone.vercel.app/'  
   : 'http://127.0.0.1:5000';
 
 function getAccessToken() {
@@ -14,7 +14,7 @@ async function handleApiCall(apiFunction) {
     if (error.message.includes('401') || error.message.includes('Not authenticated')) {
       localStorage.removeItem('spotify_access_token');
       localStorage.removeItem('spotify_refresh_token');
-      window.location.href = 'http://127.0.0.1:5000/auth/login';
+      window.location.href = 'https://a-spotify-clone.vercel.app/auth/login';
       throw new Error('Session expired. Please log in again.');
     }
     throw error;
@@ -188,7 +188,7 @@ export async function setVolume(volume) {
 
     if (!token) throw new Error('No access token');
 
-    const response = await fetch('http://127.0.0.1:5000/api/player/volume', {
+    const response = await fetch('https://a-spotify-clone.vercel.app/api/player/volume', {
       method: 'PUT',
       headers: {
         Authorization: `Bearer ${token}`,
