@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Music } from 'lucide-react';
 import './Library.css';
-import { getLibraryContent, getPlaylistTracks } from '../../api/spotify'; 
+import { getLibraryContent, getPlaylistTracks } from '../../frontend/spotify'; 
 
 export default function Library({ setCurrentView, onPlaylistSelect }) {
   const [activeFilter, setActiveFilter] = useState('playlists');

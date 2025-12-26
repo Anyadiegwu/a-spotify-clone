@@ -251,7 +251,7 @@
 
 import React, { useState, useEffect } from 'react';
 import './LikedSongs.css';
-import { getPlaylistTracks, playTrack, likeTrack, unlikeTrack, checkTracksLiked } from '../../api/spotify';
+import { getPlaylistTracks, playTrack, likeTrack, unlikeTrack, checkTracksLiked } from '../../frontend/spotify';
 import { Play, Pause, Heart, MoreHorizontal, Clock } from 'lucide-react';
 
 export default function LikedSongs({ 

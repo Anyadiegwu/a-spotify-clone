@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../maincontent/MainContent.css";
 import { Play, Heart } from "lucide-react";
-import { playTrack, likeTrack, unlikeTrack, checkTracksLiked } from "../../api/spotify";
+import { playTrack, likeTrack, unlikeTrack, checkTracksLiked } from "../../frontend/spotify";
 
 export default function PlaylistView({ playlist }) {
   const [likedStatus, setLikedStatus] = useState({});

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Music, Home, Search, Library, Plus, Heart, LogOut } from 'lucide-react';
 import './Sidebar.css';
-import { getPlaylistTracks } from '../../api/spotify';
+import { getPlaylistTracks } from '../../frontend/spotify';
 
 export default function Sidebar({ playlists, setCurrentView, onLogout, onPlaylistSelect }) {
 

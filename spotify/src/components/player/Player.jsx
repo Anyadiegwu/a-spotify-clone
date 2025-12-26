@@ -10,7 +10,7 @@ import {
   unlikeTrack,
   likeTrack,
   checkTracksLiked,
-  seekToPosition } from '../../api/spotify';
+  seekToPosition } from '../../frontend/spotify';
 import { getTrackDetailsFromState } from './GetTrackDetails';
 
 function Player() {

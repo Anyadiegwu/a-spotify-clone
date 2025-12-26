@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Search as SearchIcon, Music, User, Disc, List, Play, X, AlertCircle } from 'lucide-react';
-import { search, playTrack } from '../../api/spotify';
+import { search, playTrack } from '../../frontend/spotify';
 import './Search.css';
 
 export default function Search({ onPlaylistSelect }) {

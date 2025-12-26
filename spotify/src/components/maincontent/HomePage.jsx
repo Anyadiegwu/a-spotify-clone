@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Play, Music, TrendingUp, Clock, Sparkles } from 'lucide-react';
-import { getTopTracks, getTopArtists, getRecentlyPlayed, playTrack } from '../../api/spotify';
+import { getTopTracks, getTopArtists, getRecentlyPlayed, playTrack } from '../../frontend/spotify';
 import './HomePage.css';
 
 export default function HomePage() {

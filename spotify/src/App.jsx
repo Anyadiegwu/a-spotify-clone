@@ -103,7 +103,7 @@ const handlePlaylistSelect = (tracksData, playlistName, playlistId, playlistImag
 
   const handleTrackPlay = async (trackId) => {
     try {
-      const { playTrack } = await import('./api/spotify');
+      const { playTrack } = await import('./frontend/spotify');
       await playTrack(trackId);
     } catch (err) {
       console.error('Failed to play track from App:', err);

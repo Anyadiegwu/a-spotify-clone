@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import "./CurrentTrack.css";
-import { getPlayerState, getRecentlyPlayed } from "../../api/spotify";
+import { getPlayerState, getRecentlyPlayed } from "../../frontend/spotify";
 
 export default function CurrentTrack() {
   const [currentTrack, setCurrentTrack] = useState(null);
