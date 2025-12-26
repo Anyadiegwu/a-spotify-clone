@@ -987,3 +987,4 @@ app.get('/auth/logout', (req, res) => {
   res.redirect(FRONTEND_URI);
 });
 
+module.exports = app;
