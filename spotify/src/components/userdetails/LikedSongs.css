@@ -1,0 +1,658 @@
+.likedsongs-view {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #5b21b6 0%, #2e1065 25%, #1a0b2e 50%, #0a0118 100%);
+  color: white;
+  padding-bottom: 100px;
+  width: 100%;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+.likedsongs-view::-webkit-scrollbar {
+  width: 12px;
+}
+
+.likedsongs-view::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.likedsongs-view::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+}
+
+.likedsongs-view::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.likedsongs-header {
+  display: flex;
+  align-items: flex-end;
+  gap: 32px;
+  padding: 80px 32px 24px;
+  min-height: 340px;
+  position: relative;
+}
+
+.likedsongs-cover-shadow {
+  flex-shrink: 0;
+  width: 232px;
+  height: 232px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #7c3aed, #a78bfa);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(124, 58, 237, 0.4), 0 16px 48px rgba(0, 0, 0, 0.6);
+}
+
+.likedsongs-cover {
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(135deg, rgba(30, 215, 96, 0.15), rgba(124, 58, 237, 0.15));
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.likedsongs-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.playlist-badge {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 12px;
+  display: block;
+  opacity: 0.9;
+}
+
+.likedsongs-title {
+  font-size: clamp(32px, 8vw, 96px);
+  font-weight: 900;
+  line-height: 1;
+  margin: 0 0 24px 0;
+  letter-spacing: -0.04em;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.likedsongs-description {
+  font-size: clamp(14px, 2vw, 16px);
+  color: #d1d5db;
+  margin: 0;
+  font-weight: 500;
+}
+
+.likedsongs-controls {
+  padding: 32px 32px 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.play-button-large {
+  width: 64px;
+  height: 64px;
+  background: #1ed760;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(30, 215, 96, 0.4);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.play-button-large::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.play-button-large:hover {
+  transform: scale(1.06);
+  background: #1fdf64;
+}
+
+.play-button-large:hover::before {
+  opacity: 1;
+}
+
+.play-button-large:active {
+  transform: scale(0.98);
+}
+
+.more-button {
+  background: none;
+  border: none;
+  color: #9ca3af;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.more-button:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.likedsongs-tracks {
+  background: transparent;
+  margin: 0 32px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.tracks-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  table-layout: fixed;
+}
+
+.tracks-table thead {
+  position: sticky;
+  top: 0;
+  background: rgba(10, 1, 24, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 10;
+}
+
+.tracks-table th {
+  text-align: left;
+  padding: 12px 16px;
+  color: #9ca3af;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.tracks-table th.duration-col {
+  padding-right: 32px !important;
+}
+
+.index-col { 
+  width: 60px; 
+  text-align: center;
+  padding-left: 16px !important;
+}
+
+.title-col {
+  width: 50%;
+  min-width: 200px;
+}
+
+.album-col { 
+  width: 30%;
+  max-width: 300px;
+}
+
+.duration-col { 
+  width: 140px; 
+  text-align: right; 
+  padding-right: 32px !important;
+}
+
+.track-row {
+  height: 64px;
+  transition: background 0.2s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.track-row:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+}
+
+.track-row.playing {
+  background: rgba(124, 58, 237, 0.15);
+}
+
+.track-row td {
+  padding: 8px 16px;
+  vertical-align: middle;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.play-pause-btn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+
+.play-pause-btn:hover {
+  transform: scale(1.1);
+}
+
+.track-index {
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+.title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.title-wrapper img {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  flex-shrink: 0;
+}
+
+.mini-placeholder {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #374151, #1f2937);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  font-size: 18px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.title-wrapper > div {
+  min-width: 0;
+  flex: 1;
+}
+
+.track-name {
+  font-weight: 500;
+  font-size: 15px;
+  color: #ffffff;
+  margin-bottom: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.track-name.now-playing {
+  color: #1ed760;
+}
+
+.artists {
+  color: #9ca3af;
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.album-col {
+  color: #9ca3af;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-right: 16px !important;
+}
+
+.duration-col {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-right: 32px !important;
+}
+
+.duration {
+  color: #9ca3af;
+  font-size: 14px;
+  min-width: 40px;
+  text-align: right;
+}
+
+.like-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+
+.like-btn:hover {
+  transform: scale(1.15);
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.loading-message,
+.empty-message {
+  text-align: center;
+  padding: 80px 20px;
+  color: #9ca3af;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.liked-tracks-wrapper {
+  display: contents;
+}
+@media (max-width: 1224px) {
+  .title-col {
+    width: 42%;
+  }
+}
+/* ===== TABLET RESPONSIVENESS (768px - 1024px) ===== */
+@media (max-width: 1024px) {
+  .likedsongs-tracks {
+    margin: 0 24px;
+  }
+
+  .album-col { 
+    width: 25%;
+    max-width: 250px;
+  }
+  .title-col {
+    width: 68%;
+    min-width: 150px;
+  }
+  .duration-col { 
+    width: 130px; 
+  }
+  .tracks-table th.album-col,
+  .tracks-table td.album-col {
+    display: none;
+  }
+}
+@media (max-width: 924px) {
+  .title-col {
+    width: 62%;
+  }
+}
+/* ===== TABLET RESPONSIVENESS (768px and below) ===== */
+@media (max-width: 768px) {
+  .likedsongs-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px 24px;
+    min-height: auto;
+  }
+
+  .likedsongs-cover-shadow {
+    width: 180px;
+    height: 180px;
+  }
+
+  .likedsongs-cover {
+    width: 160px;
+    height: 160px;
+  }
+  
+  .likedsongs-cover svg {
+    width: 64px;
+    height: 64px;
+  }
+
+  .likedsongs-controls {
+    padding: 24px 20px;
+    justify-content: center;
+  }
+
+  .likedsongs-tracks {
+    margin: 0 20px;
+  }
+
+  /* Hide album column on tablet and mobile */
+  .tracks-table th.album-col,
+  .tracks-table td.album-col {
+    display: none;
+  }
+
+  .tracks-table th {
+    padding: 12px 12px;
+    font-size: 10px;
+  }
+
+  .track-row {
+    height: 56px;
+  }
+  
+  .track-row td {
+    padding: 8px 12px;
+  }
+
+  .index-col { 
+    width: 50px;
+    padding-left: 12px !important;
+  }
+
+  .title-col {
+    width: 68%;
+    min-width: 150px;
+  }
+
+  .duration-col { 
+    width: 100px;
+    padding-right: 20px !important;
+  }
+
+  .title-wrapper {
+    gap: 10px;
+  }
+
+  .title-wrapper img,
+  .mini-placeholder {
+    width: 40px;
+    height: 40px;
+  }
+
+  .track-name {
+    font-size: 14px;
+  }
+
+  .artists {
+    font-size: 12px;
+  }
+
+  .duration {
+    font-size: 13px;
+    min-width: 35px;
+  }
+
+  .like-btn {
+    padding: 6px;
+  }
+}
+
+/* ===== MOBILE RESPONSIVENESS (480px and below) ===== */
+@media (max-width: 480px) {
+  .likedsongs-header {
+    padding: 30px 16px 20px;
+  }
+
+  .likedsongs-cover-shadow {
+    width: 140px;
+    height: 140px;
+  }
+
+  .likedsongs-cover {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .likedsongs-cover svg {
+    width: 48px;
+    height: 48px;
+  }
+
+  .play-button-large {
+    width: 56px;
+    height: 56px;
+  }
+  
+  .play-button-large svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .likedsongs-controls {
+    padding: 20px 16px;
+  }
+
+  .likedsongs-tracks {
+    margin: 0 12px;
+  }
+
+  .tracks-table th {
+    padding: 10px 8px;
+    font-size: 9px;
+  }
+
+  .track-row {
+    height: 52px;
+  }
+  
+  .track-row td {
+    padding: 6px 8px;
+  }
+
+  .index-col { 
+    width: 40px;
+    padding-left: 8px !important;
+  }
+
+  .title-col {
+    min-width: 120px;
+  }
+
+  .duration-col { 
+    width: 85px;
+    padding-right: 16px !important;
+  }
+
+  .title-wrapper {
+    gap: 8px;
+  }
+
+  .title-wrapper img,
+  .mini-placeholder {
+    width: 36px;
+    height: 36px;
+  }
+
+  .mini-placeholder {
+    font-size: 16px;
+  }
+
+  .track-name {
+    font-size: 13px;
+    margin-bottom: 2px;
+  }
+
+  .artists {
+    font-size: 11px;
+  }
+
+  .duration {
+    font-size: 12px;
+    min-width: 32px;
+  }
+
+  .duration-col {
+    gap: 8px;
+  }
+
+  .like-btn {
+    padding: 4px;
+  }
+  
+  .like-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .track-index {
+    font-size: 13px;
+  }
+
+  .play-pause-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .loading-message,
+  .empty-message {
+    padding: 60px 16px;
+    font-size: 14px;
+  }
+}
+
+/* ===== EXTRA SMALL MOBILE (380px and below) ===== */
+@media (max-width: 380px) {
+  .index-col { 
+    width: 35px;
+    padding-left: 6px !important;
+  }
+
+  .title-col {
+    min-width: 100px;
+  }
+
+  .duration-col { 
+    width: 75px;
+    padding-right: 12px !important;
+    gap: 6px;
+  }
+
+  .title-wrapper img,
+  .mini-placeholder {
+    width: 32px;
+    height: 32px;
+  }
+
+  .track-name {
+    font-size: 12px;
+  }
+
+  .artists {
+    font-size: 10px;
+  }
+
+  .duration {
+    font-size: 11px;
+    min-width: 28px;
+  }
+
+  .like-btn svg {
+    width: 12px;
+    height: 12px;
+  }
+}

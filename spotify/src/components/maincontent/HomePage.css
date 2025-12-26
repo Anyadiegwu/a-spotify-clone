@@ -1,0 +1,488 @@
+.home-page {
+  flex: 1;
+  padding: 24px 32px;
+  background: linear-gradient(to bottom, #1f1f1f 0%, #121212 20%, #121212 100%);
+  overflow-y: auto;
+  color: white;
+  min-height: 100vh;
+  scroll-behavior: smooth;
+}
+
+.home-header {
+  margin-bottom: 24px;
+}
+
+.home-greeting {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: #ffffff;
+}
+
+.home-subtitle {
+  font-size: 0.95rem;
+  color: #b3b3b3;
+  font-weight: 400;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  color: #a7a7a7;
+}
+
+.loading-icon {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 24px;
+  animation: gentlePulse 2s ease-in-out infinite;
+}
+
+@keyframes gentlePulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* Sections */
+.home-section {
+  margin-bottom: 40px;
+}
+
+.section-header {
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+}
+
+.section-icon {
+  width: 24px;
+  height: 24px;
+  color: #ffffff;
+}
+
+.section-description {
+  font-size: 0.875rem;
+  color: #b3b3b3;
+  font-weight: 400;
+  margin-top: 4px;
+}
+
+/* Quick Picks Grid - Smaller horizontal cards */
+.quick-picks {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.quick-pick-item {
+  background: #181818;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  overflow: hidden;
+  height: 64px;
+  position: relative;
+}
+
+.quick-pick-item:hover {
+  background: #282828;
+}
+
+.quick-pick-image {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  background: #282828;
+}
+
+.quick-pick-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.quick-pick-title {
+  flex: 1;
+  padding: 0 16px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.quick-pick-subtitle {
+  position: absolute;
+  bottom: 12px;
+  left: 96px;
+  font-size: 0.8rem;
+  color: #b3b3b3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: calc(100% - 180px);
+}
+
+.quick-pick-playy {
+  width: 40px;
+  height: 40px;
+  background: hsl(141, 73%, 42%);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-right: 12px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  flex-shrink: 0;
+}
+
+.quick-pick-item:hover .quick-pick-playy {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.quick-pick-playy:hover {
+  transform: scale(1.05);
+  background: #1ed760;
+}
+
+.play-iicon {
+  width: 18px;
+  height: 18px;
+  color: black;
+  /* margin-left: 2px; */
+}
+
+/* Artists Grid - No background until hover */
+.artists-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 24px;
+}
+
+.artist-card {
+  background: transparent;
+  border-radius: 8px;
+  padding: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.artist-card:hover {
+  background: #181818;
+}
+
+.artist-image-wrapper {
+  position: relative;
+  margin-bottom: 16px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.artist-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.artist-placeholder {
+  width: 100%;
+  height: 100%;
+  background: #282828;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholder-icon {
+  width: 48px;
+  height: 48px;
+  color: #727272;
+}
+
+/* No play button for artists */
+.artist-play-btn {
+  display: none;
+}
+
+.artist-name {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.artist-type {
+  font-size: 0.875rem;
+  color: #b3b3b3;
+  margin: 0;
+  text-transform: capitalize;
+  font-weight: 400;
+}
+
+/* Tracks Grid - No background until hover */
+.tracks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 24px;
+}
+
+.track-card {
+  background: transparent;
+  border-radius: 8px;
+  padding: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.track-card:hover {
+  background: #181818;
+}
+
+.track-image-wrapper {
+  position: relative;
+  margin-bottom: 16px;
+  aspect-ratio: 1;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.track-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.track-placeholder {
+  width: 100%;
+  height: 100%;
+  background: #282828;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.track-play-bttn {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #1db954;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.track-card:hover .track-play-bttn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.track-play-bttn:hover {
+  transform: scale(1.05);
+  background: #1ed760;
+}
+
+.track-play-bttn .play-iicon {
+  width: 16px;
+  height: 16px;
+  fill: black;
+}
+
+.track-name {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-artist {
+  font-size: 0.875rem;
+  color: #b3b3b3;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 400;
+}
+
+/* Empty State */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  gap: 16px;
+  text-align: center;
+}
+
+.empty-icon {
+  width: 64px;
+  height: 64px;
+  color: #727272;
+}
+
+.empty-state h2 {
+  font-size: 1.5rem;
+  margin: 0;
+  color: #fff;
+  font-weight: 700;
+}
+
+.empty-state p {
+  font-size: 1rem;
+  color: #b3b3b3;
+  margin: 0;
+  max-width: 400px;
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) {
+  .quick-picks {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  }
+}
+
+@media (max-width: 1000px) {
+  .quick-picks {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+    .quick-pick-playy{
+    display: none;
+  }
+  .artists-grid,
+  .tracks-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+  
+  #quick-pick-image {
+    width: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-page {
+    padding: 50px 24px;
+  }
+
+  .home-greeting {
+    font-size: 1.75rem;
+  }
+
+  .section-title {
+    font-size: 1.25rem;
+  }
+
+  .quick-picks {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .quick-pick-item {
+    height: 54px;
+  }
+
+  #quick-pick-image {
+    width: 55px;
+  }
+
+  .quick-pick-title {
+    font-size: 0.15rem;
+  }
+  .quick-pick-playy{
+    display: none;
+  }
+  .artists-grid,
+  .tracks-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-page {
+    padding: 16px;
+  }
+
+  .home-greeting {
+    font-size: 1.5rem;
+  }
+
+  .quick-picks {
+    grid-template-columns: 1fr;
+  }
+
+  .artists-grid,
+  .tracks-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .artist-card,
+  .track-card {
+    padding: 12px;
+  }
+}
+.home-page {
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+.home-page::-webkit-scrollbar {
+  width: 12px;
+}
+
+.home-page::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.home-page::-webkit-scrollbar-thumb{
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.home-page::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}

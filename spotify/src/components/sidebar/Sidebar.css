@@ -1,0 +1,233 @@
+.sidebar {
+  width: 256px;
+  background-color: #000;
+  color: white;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+#show-create-playlist{
+  display: flex;
+}
+.sidebar-logo {
+  margin-bottom: 32px;
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  color: #1db954;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.nav-button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #b3b3b3;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.nav-button:hover {
+  color: white;
+}
+#create-playlist{
+  display: none;
+}
+.nav-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.sidebar-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.playlist-section {
+  border-top: 1px solid #282828;
+  padding-top: 16px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.playlist-section::-webkit-scrollbar {
+  display: none;
+}
+
+.playlist-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #b3b3b3;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 0;
+  font-size: 14px;
+  width: 100%;
+  text-align: left;
+  transition: color 0.2s;
+}
+
+.playlist-item:hover {
+  color: white;
+}
+
+.playlist-item:hover .playlist-subtitle {
+  color: #b3b3b3; 
+}
+
+.playlist-item-image {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: #282828;
+}
+
+.playlist-item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.playlist-item-image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #b3b3b3;
+}
+
+.playlist-item-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0; 
+}
+
+.playlist-item-name {
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.playlist-subtitle {
+  font-size: 12px;
+  color: #b3b3b3;
+  transition: color 0.2s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.spotify-logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: auto;
+  padding: 12px 16px;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  color: #b3b3b3;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.spotify-logout-btn:hover {
+  color: #1db954;
+}
+
+.spotify-logout-btn:active {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.spotify-logout-btn:focus-visible {
+  outline: 2px solid #1db954;
+  outline-offset: 2px;
+}
+
+.logout-icon {
+  font-size: 16px;
+  line-height: 1;
+  flex-shrink: 0;
+  color: inherit;
+}
+
+.playlist-header {
+  padding-bottom: 8px;
+  font-weight: 500;
+  font-size: 18px;
+  color: #b3b3b3;
+}
+
+@media (max-width: 770px) {
+  .sidebar-logo, .playlist-section, .playlist-header{
+    display: none;
+  }
+  .sidebar-actions{
+      display: none;
+    }
+  .spotify-logout-btn{
+      display: none;
+    }
+    #create-playlist{
+      display: flex;
+      flex-direction: column;
+      width: 150px;
+    }
+  .sidebar{
+    position: fixed;
+    bottom: 0;
+    z-index: 100;
+    background-color: rgba(1, 1, 1, 0.13);     /* Dark semi-transparent background (adjust alpha for more/less transparency) */
+    backdrop-filter: blur(12px);              /* The key: blurs whatever is behind the element, creating the frosted glass look */
+    -webkit-backdrop-filter: blur(12px);      /* Required for Safari/iOS support */ 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);  /* Subtle white glow line at the bottom */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: 90px;
+  }
+  @supports not (backdrop-filter: blur(10px)) {
+  .overlay-bar {
+    background-color: rgba(0, 0, 0, 0.6); /* Just more opaque if no blur */
+  }
+}
+  .sidebar-nav{
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+  }
+  .nav-button{
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    font-size: 13px;
+  }
+  #show-create-playlist{
+    display: none;
+  }
+}
