@@ -987,4 +987,12 @@ app.get('/auth/logout', (req, res) => {
   res.redirect(FRONTEND_URI);
 });
 
-module.exports = app;
+if (process.env.VERCEL !== '1') {
+  app.listen(PORT, () => {
+    console.log(`Backend server running on http://127.0.0.1:${PORT}`);
+    console.log(`Login URL: http://127.0.0.1:${PORT}/auth/login`);
+  });
+}
+
+// Export the app for Vercel
+export default app;
