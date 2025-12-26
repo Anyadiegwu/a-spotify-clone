@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 5000;
 
 const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
 const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
-const REDIRECT_URI = process.env.REDIRECT_URI || 'http://127.0.0.1:5000/auth/callback';
+const REDIRECT_URI = process.env.REDIRECT_URI || 'https://a-spotify-clone.vercel.app/auth/callback';
 const FRONTEND_URI = process.env.FRONTEND_URI || "https://a-spotify-clone.vercel.app/";
 
 let accessToken = '';
