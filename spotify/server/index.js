@@ -762,49 +762,6 @@ app.get('/api/browse/new-releases', async (req, res) => {
   }
 });
 
-// app.get('/api/search', async (req, res) => {
-//   const authHeader = req.headers.authorization;
-//   const access_token = authHeader && authHeader.startsWith('Bearer ') 
-//     ? authHeader.substring(7) 
-//     : null;
-
-//   if (!access_token) {
-//     return res.status(401).json({ error: 'Not authenticated' });
-//   }
-
-//   const { q, type, limit } = req.query;
-
-//   if (!q) {
-//     return res.status(400).json({ error: 'Search query is required' });
-//   }
-
-//   const searchType = type || 'track,artist,album,playlist';
-//   const searchLimit = limit || 20;
-
-//   try {
-//     const response = await axios.get(
-//       `https://api.spotify.com/v1/search`,
-//       {
-//         headers: { Authorization: `Bearer ${access_token}` },
-//         params: {
-//           q,
-//           type: searchType,
-//           limit: searchLimit,
-//         },
-//       }
-//     );
-
-//     res.json(response.data);
-//   } catch (error) {
-//     console.error('Search failed:', error.response?.data);
-//     res.status(500).json({ 
-//       error: 'Search failed',
-//       details: error.response?.data 
-//     });
-//   }
-// });
-
-// In index.js - /api/search endpoint
 app.get('/api/search', async (req, res) => {
   const authHeader = req.headers.authorization;
   const access_token = authHeader && authHeader.startsWith('Bearer ') 
