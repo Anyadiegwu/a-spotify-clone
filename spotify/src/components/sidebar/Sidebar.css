@@ -190,15 +190,15 @@
   }
   .sidebar-actions{
       display: none;
-    }
+  }
   .spotify-logout-btn{
       display: none;
-    }
+  }
     #create-playlist{
       display: flex;
       flex-direction: column;
-      width: 155px;
-    }
+      width: 160px;
+  }
   .sidebar{
     position: fixed;
     bottom: 0;
@@ -213,7 +213,7 @@
   }
   @supports not (backdrop-filter: blur(10px)) {
   .overlay-bar {
-    background-color: rgba(0, 0, 0, 0.6); /* Just more opaque if no blur */
+    background-color: rgba(0, 0, 0, 0.6); 
   }
 }
   .sidebar-nav{
@@ -224,8 +224,8 @@
   .nav-button{
     display: flex;
     flex-direction: column;
-    width: 155px;
-    font-size: 12px;
+    width: 160px;
+    font-size: 11px;
   }
   #show-create-playlist{
     display: none;
