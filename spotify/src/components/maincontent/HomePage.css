@@ -509,11 +509,6 @@
   .artist-card{
     padding: 12px;
   }
-  .track-image-wrapper {
-    width: 50%;
-    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.5);
-
-  }
     .tracks-griid {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.75rem;
