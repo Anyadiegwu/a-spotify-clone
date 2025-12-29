@@ -197,7 +197,7 @@
     #create-playlist{
       display: flex;
       flex-direction: column;
-      width: 150px;
+      width: 160px;
     }
   .sidebar{
     position: fixed;
@@ -224,8 +224,8 @@
   .nav-button{
     display: flex;
     flex-direction: column;
-    width: 150px;
-    font-size: 13px;
+    width: 160px;
+    font-size: 11px;
   }
   #show-create-playlist{
     display: none;

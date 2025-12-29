@@ -142,33 +142,33 @@ export default function HomePage() {
               Recently played
             </h2>
           </div>
-          <div className="tracks-grid">
+          <div className="tracks-griid">
             {recentlyPlayed.map((item, idx) => {
               const track = item.track;
               return (
                 <div 
                   key={`${track.id}-${idx}`} 
-                  className="track-card"
+                  className="track-caard"
                   onClick={() => handleTrackPlay(track.id)}
                 >
-                  <div className="track-image-wrapper">
+                  <div className="track-image-wraapper">
                     {track.album?.images?.[0] ? (
                       <img 
                         src={track.album.images[0].url} 
                         alt={track.name}
-                        className="track-image"
+                        className="track-imaage"
                       />
                     ) : (
-                      <div className="track-placeholder">
-                        <Music className="placeholder-icon" />
+                      <div className="track-plaaceholder">
+                        <Music className="plaaceholder-icon" />
                       </div>
                     )}
                     <button className="track-play-bttn">
                       <Play className="play-iicon" fill="black" />
                     </button>
                   </div>
-                  <h3 className="track-name">{track.name}</h3>
-                  <p className="track-artist">
+                  <h3 className="track-naame">{track.name}</h3>
+                  <p className="traack-artist">
                     {track.artists?.map(a => a.name).join(', ')}
                   </p>
                 </div>
@@ -186,31 +186,31 @@ export default function HomePage() {
               Your top tracks
             </h2>
           </div>
-          <div className="tracks-grid">
+          <div className="tracks-griid">
             {topTracks.slice(8).map((track) => (
               <div 
                 key={track.id} 
-                className="track-card"
+                className="track-caard"
                 onClick={() => handleTrackPlay(track.id)}
               >
-                <div className="track-image-wrapper">
+                <div className="track-image-wraapper">
                   {track.album?.images?.[0] ? (
                     <img 
                       src={track.album.images[0].url} 
                       alt={track.name}
-                      className="track-image"
+                      className="track-imaage"
                     />
                   ) : (
-                    <div className="track-placeholder">
-                      <Music className="placeholder-icon" />
+                    <div className="track-plaaceholder">
+                      <Music className="plaaceholder-icon" />
                     </div>
                   )}
                   <button className="track-play-bttn">
                     <Play className="play-iicon" />
                   </button>
                 </div>
-                <h3 className="track-name">{track.name}</h3>
-                <p className="track-artist">
+                <h3 className="track-naame">{track.name}</h3>
+                <p className="traack-artist">
                   {track.artists?.map(a => a.name).join(', ')}
                 </p>
               </div>
