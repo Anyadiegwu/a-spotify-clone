@@ -334,14 +334,13 @@
   }
 }
 
-/* ===== MOBILE RESPONSIVENESS (768px and below) ===== */
 @media (max-width: 768px) {
   .player {
     height: 72px;
     padding: 12px 16px;
     position: fixed;
     z-index: 100;
-    bottom: 70px;
+    bottom: 90px;
     width: calc(100% - 32px);
     left: 16px;
     right: 16px;
