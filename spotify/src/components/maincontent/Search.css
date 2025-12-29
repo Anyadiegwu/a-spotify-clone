@@ -524,6 +524,11 @@
   .search-filters {
     gap: 2px;
   }
+  .filter-btn {
+    padding: 4px 8px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
 }
 
 @media (max-width: 480px) {
