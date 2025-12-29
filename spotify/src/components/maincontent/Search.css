@@ -417,7 +417,7 @@
   height: 14px;
 }
 
-.album-nam, .playlist-name {
+.album-name, .playlist-name {
   font-size: 1rem;
   font-weight: 600;
   color: #ffffff;
@@ -441,103 +441,6 @@
   -webkit-box-orient: vertical;
   line-height: 1.4;
 }
-
-/* Playlists Grid */
-/* .playlists-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 24px;
-}
-
-.playlist-card {
-  background: transparent;
-  border-radius: 8px;
-  padding: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.playlist-card:hover {
-  background: #181818;
-}
-
-.playlist-image-wrapper {
-  position: relative;
-  margin-bottom: 16px;
-  aspect-ratio: 1;
-  border-radius: 4px;
-  overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-}
-
-.playlist-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.playlist-placeholder {
-  width: 100%;
-  height: 100%;
-  background: #282828;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.playlist-play-btn {
-  position: absolute;
-  bottom: 8px;
-  right: 8px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #1db954;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  opacity: 0;
-  transform: translateY(8px);
-  transition: all 0.3s ease;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-}
-
-.playlist-card:hover .playlist-play-btn {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.playlist-play-btn:hover {
-  transform: scale(1.05);
-  background: #1ed760;
-}
-
-.playlist-play-btn .playlist-play-icon {
-  width: 14px;
-  height: 14px;
-}
-.playlist-name {
-  font-size: 1rem;
-  font-weight: 600;
-  margin: 0 0 4px 0;
-  color: white;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.playlist-description {
-  font-size: 0.875rem;
-  color: #b3b3b3;
-  margin: 0;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  line-clamp: 2;
-  overflow: hidden;
-} */
-
 /* Empty State */
 .search-empty {
   display: flex;
@@ -607,12 +510,7 @@
     height: 40px;
   }
 
-  /* .play-iicon {
-    width: 16px;
-    height: 16px;
-  } */
-
-  .album-nam, .playlist-name {
+  .album-name, .playlist-name {
     font-size: 0.9rem;
   }
 
@@ -620,9 +518,12 @@
     font-size: 0.8rem;
   }
   .search-section-title {
-  font-size: 1.2rem;
-  font-weight: 500;
-}
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+  .search-filters {
+    gap: 2px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -634,7 +535,6 @@
   .albums-grid,
   .playlists-grid {
     grid-template-columns: repeat(2, 1fr);
-    /* gap: 12px; */
     gap: 0.75rem;
     padding: 0.5rem;
   }
@@ -645,12 +545,7 @@
     right: 0.25rem;
   }
 
-  /* .play-iicon {
-    width: 14px;
-    height: 14px;
-  } */
-
-  .album-nam, .playlist-name {
+  .album-name, .playlist-name {
     font-size: 0.85rem;
     margin-bottom: 0.25rem;
   }
@@ -670,7 +565,7 @@
     padding: 0.4rem;
   }
 
-  .album-nam, .playlist-name {
+  .album-name, .playlist-name {
     font-size: 0.8rem;
   }
 
@@ -678,7 +573,6 @@
     font-size: 0.7rem;
   }
 }
-/* Add these styles to your Search.css file */
 
 /* Error State Styling */
 .search-error {
