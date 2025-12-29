@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Play, Pause, SkipBack, SkipForward, Volume2, Heart } from 'lucide-react';
 import './Player.css';
+import FullScreenPlayer from './FullScreenPlayer'; // Import the new component
 import {
   getPlayerState,
   togglePlayback,
@@ -10,7 +11,8 @@ import {
   unlikeTrack,
   likeTrack,
   checkTracksLiked,
-  seekToPosition } from '../../frontend/spotify';
+  seekToPosition
+} from '../../frontend/spotify';
 import { getTrackDetailsFromState } from './GetTrackDetails';
 
 function Player() {
@@ -21,21 +23,19 @@ function Player() {
   const [volume, setVolumeState] = useState(50);
   const [seekValue, setSeekValue] = useState(0);
   const [isSeeking, setIsSeeking] = useState(false);
+  const [isFullScreenOpen, setIsFullScreenOpen] = useState(false); // New state
 
   useEffect(() => {
     const fetchPlayerState = async () => {
       try {
         const state = await getPlayerState();
-
         const trackDetails = getTrackDetailsFromState(state);
         setTrack(trackDetails);
 
-        // Sync volume
         if (state?.device?.volume_percent !== undefined) {
           setVolumeState(state.device.volume_percent);
         }
 
-        // Sync progress only when not actively seeking
         if (!isSeeking && trackDetails?.progressMs !== undefined) {
           setSeekValue(trackDetails.progressMs);
         }
@@ -132,7 +132,6 @@ function Player() {
       await setVolume(newVolume);
     } catch (err) {
       console.error('Volume update failed', err);
-      // Re-sync on failure
       const state = await getPlayerState();
       if (state?.device?.volume_percent !== undefined) {
         setVolumeState(state.device.volume_percent);
@@ -161,7 +160,6 @@ function Player() {
       setSeekValue(trackDetails.progressMs);
     } catch (err) {
       console.error('Seek failed:', err);
-      // Re-sync on error
       const state = await getPlayerState();
       const trackDetails = getTrackDetailsFromState(state);
       setTrack(trackDetails);
@@ -175,6 +173,16 @@ function Player() {
     const minutes = Math.floor(totalSeconds / 60);
     const seconds = totalSeconds % 60;
     return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+  };
+
+  // Handler to open fullscreen player on mobile
+  const handlePlayerClick = (e) => {
+    // Only open on mobile and if not clicking on interactive elements
+    if (window.innerWidth <= 768 && 
+        !e.target.closest('.player-heart') && 
+        !e.target.closest('.mobile-play-button')) {
+      setIsFullScreenOpen(true);
+    }
   };
 
   if (loading) {
@@ -196,90 +204,118 @@ function Player() {
   const progressPercent = track.durationMs ? (seekValue / track.durationMs) * 100 : 0;
 
   return (
-    <div className="player" key={track.id}>
-      {/* Left: Album art, title, heart */}
-      <div className="player-left">
-        <div className="current-track-image">
-          {track.albumArt ? (
-            <img src={track.albumArt} alt="Album cover" />
-          ) : (
-            <div className="no-image" />
-          )}
-        </div>
-
-        <div className="current-track-info">
-          <div className="track-carousel">
-            <span className="current-track-title">{track.name}</span>
-            <span className="track-separator"> • </span>
-            <span className="current-track-artist">{track.artists}</span>
+    <>
+      <div className="player" key={track.id} onClick={handlePlayerClick}>
+        {/* Left: Album art, title, heart */}
+        <div className="player-left">
+          <div className="current-track-image">
+            {track.albumArt ? (
+              <img src={track.albumArt} alt="Album cover" />
+            ) : (
+              <div className="no-image" />
+            )}
           </div>
-        </div>
 
-        <Heart
-          className={`player-heart ${isLiked ? 'liked' : ''}`}
-          onClick={handleLikeToggle}
-          disabled={loading}
-          fill={isLiked ? '#1db954' : 'none'}
-          stroke={isLiked ? '#1db954' : '#b3b3b3'}
-        />
-      </div>
+          <div className="current-track-info">
+            <div className="track-carousel">
+              <span className="current-track-title">{track.name}</span>
+              <span className="current-track-artist">{track.artists}</span>
+            </div>
+          </div>
 
-      {/* Center: Controls + Seek bar */}
-      <div className="player-center">
-        <div className="player-controls">
-          <SkipBack className="control-icon" onClick={handlePrevious} />
-          <button onClick={handleToggle} className="play-button">
+          <Heart
+            className={`player-heart ${isLiked ? 'liked' : ''}`}
+            onClick={handleLikeToggle}
+            disabled={loading}
+            fill={isLiked ? '#1db954' : 'none'}
+            stroke={isLiked ? '#1db954' : '#b3b3b3'}
+          />
+
+          {/* Mobile play button */}
+          <button onClick={handleToggle} className="mobile-play-button">
             {track.isPlaying ? (
               <Pause className="play-iconn pause" />
             ) : (
               <Play className="play-iconn play-icon-offset" />
             )}
           </button>
-          <SkipForward className="control-icon" onClick={handleNext} />
         </div>
 
-        <div className="progress-container">
-          <span className="progress-time">{formatTime(seekValue)}</span>
-
-          <div className="progress-bar-wrapper">
-            <div className="progress-track" />
-            <div
-              className="progress-fill"
-              style={{ width: `${progressPercent}%` }}
-            />
-            <input
-              type="range"
-              min="0"
-              max={track.durationMs || 0}
-              value={seekValue}
-              onChange={handleSeekChange}
-              onMouseDown={handleSeekMouseDown}
-              onMouseUp={handleSeekMouseUp}
-              onTouchStart={handleSeekMouseDown}
-              onTouchEnd={handleSeekMouseUp}
-              className="progress-seek"
-              step="1000"
-            />
+        {/* Center: Controls + Seek bar */}
+        <div className="player-center">
+          <div className="player-controls">
+            <SkipBack className="control-icon" onClick={handlePrevious} />
+            <button onClick={handleToggle} className="play-button">
+              {track.isPlaying ? (
+                <Pause className="play-iconn pause" />
+              ) : (
+                <Play className="play-iconn play-icon-offset" />
+              )}
+            </button>
+            <SkipForward className="control-icon" onClick={handleNext} />
           </div>
 
-          <span className="progress-time">{formatTime(track.durationMs)}</span>
+          <div className="progress-container">
+            <span className="progress-time">{formatTime(seekValue)}</span>
+
+            <div className="progress-bar-wrapper">
+              <div className="progress-track" />
+              <div
+                className="progress-fill"
+                style={{ width: `${progressPercent}%` }}
+              />
+              <input
+                type="range"
+                min="0"
+                max={track.durationMs || 0}
+                value={seekValue}
+                onChange={handleSeekChange}
+                onMouseDown={handleSeekMouseDown}
+                onMouseUp={handleSeekMouseUp}
+                onTouchStart={handleSeekMouseDown}
+                onTouchEnd={handleSeekMouseUp}
+                className="progress-seek"
+                step="1000"
+              />
+            </div>
+
+            <span className="progress-time">{formatTime(track.durationMs)}</span>
+          </div>
+        </div>
+
+        {/* Right: Volume */}
+        <div className="player-right">
+          <Volume2 className="volume-icon" />
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value={volume}
+            onChange={handleVolumeChange}
+            className="volume-slider"
+            style={{ '--fill-percent': `${volume}%` }}
+          />
         </div>
       </div>
 
-      {/* Right: Volume */}
-      <div className="player-right">
-        <Volume2 className="volume-icon" />
-        <input
-          type="range"
-          min="0"
-          max="100"
-          value={volume}
-          onChange={handleVolumeChange}
-          className="volume-slider"
-          style={{ '--fill-percent': `${volume}%` }}
-        />
-      </div>
-    </div>
+      {/* Fullscreen Player Modal */}
+      <FullScreenPlayer
+        track={track}
+        isOpen={isFullScreenOpen}
+        onClose={() => setIsFullScreenOpen(false)}
+        isLiked={isLiked}
+        onLikeToggle={handleLikeToggle}
+        onTogglePlayback={handleToggle}
+        onNext={handleNext}
+        onPrevious={handlePrevious}
+        seekValue={seekValue}
+        onSeekChange={handleSeekChange}
+        onSeekMouseDown={handleSeekMouseDown}
+        onSeekMouseUp={handleSeekMouseUp}
+        formatTime={formatTime}
+        loading={loading}
+      />
+    </>
   );
 }
 
