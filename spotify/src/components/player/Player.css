@@ -460,7 +460,7 @@
   .player {
     height: 68px;
     padding: 10px 14px;
-    bottom: 65px;
+    bottom: 90px;
     width: calc(100% - 28px);
     left: 14px;
     right: 14px;
@@ -506,7 +506,7 @@
   .player {
     height: 64px;
     padding: 8px 12px;
-    bottom: 60px;
+    bottom: 90px;
     width: calc(100% - 24px);
     left: 12px;
     right: 12px;
