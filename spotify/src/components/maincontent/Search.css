@@ -523,6 +523,7 @@
   }
   .search-filters {
     gap: 2px;
+    flex-wrap: nowrap;
   }
   .filter-btn {
     padding: 4px 8px;
